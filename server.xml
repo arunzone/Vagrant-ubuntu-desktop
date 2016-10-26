@@ -1,0 +1,41 @@
+<Server port="8005" shutdown="SHUTDOWN">
+
+ <GlobalNamingResources>
+   <!-- Used by Manager webapp -->
+   <Resource name="UserDatabase" auth="Container"
+             type="org.apache.catalina.UserDatabase"
+      description="User database that can be updated and saved"
+          factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
+         pathname="conf/tomcat-users.xml" />
+ </GlobalNamingResources>
+
+ <Service name="Catalina">
+   <Connector port="8443" maxThreads="130" minSpareThreads="130" maxSpareThreads="130"
+        maxPostSize="0" enableLookups="false" disableUploadTimeout="true"
+        acceptCount="100" debug="0" scheme="https" secure="true" connectionTimeout="20000"
+        clientAuth="false" sslProtocol="TLS" compression="off" compressableMimeType=""
+        keystoreFile="${catalina.home}/bin/.keystore" keystorePass="changeit" URIEncoding="UTF-8"/>
+   <Connector port="8080" maxThreads="200" minSpareThreads="200" maxSpareThreads="200"
+        enableLookups="false" redirectPort="8443" acceptCount="100" debug="0"
+        scheme="http" secure="false" connectionTimeout="20000" disableUploadTimeout="true"
+        maxPostSize="0" compression="on" compressableMimeType="" URIEncoding="UTF-8"/>
+
+   <Engine name="Catalina" defaultHost="localhost">
+     <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
+            resourceName="UserDatabase" />
+       <!--<Context path="/" docBase="${catalina.home}/app/mel/" > -->
+
+
+     <Host name="localhost" appBase="foo" >
+       <Context path="/" docBase="${catalina.home}/app/mel/" >
+       </Context>
+       <Context path="/html/logos" docBase="/aconex/nas/mel/logos" debug="0" privileged="true"/>
+       <Context path="/nas/mel/temp" docBase="/aconex/nas/mel/temp" debug="0" privileged="true"/>
+       <Context path="/html/jVue" docBase="/aconex/babylon_ext/jVue" debug="0" privileged="true"/>
+     </Host>
+
+   </Engine>
+ </Service>
+<Listener className="org.apache.catalina.mbeans.ServerLifecycleListener"/>
+</Server>
+
