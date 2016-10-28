@@ -13,3 +13,4 @@ source /vagrant/python.sh
 source /vagrant/jdk.sh
 source /vagrant/file_modification_limit.sh
 source /vagrant/pcp_workaround.sh
+source /vagrant/maven.sh
