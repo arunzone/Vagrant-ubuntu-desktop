@@ -23,9 +23,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
     vb.customize ["modifyvm", :id, "--vram", 64]
+    vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant","1"]
   end
 
-  #config.vm.provision :shell, :inline => "apt-get update"
-  #config.vm.provision :shell, :inline => "DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade --yes"
+  config.vm.provision :shell, :inline => "apt-get update"
+  config.vm.provision :shell, :inline => "DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade --yes"
+  config.vm.provision :shell, :path => "setup_nvm.sh", privileged: false
   config.vm.provision :shell, :path => "setup.sh"
 end

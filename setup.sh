@@ -10,3 +10,4 @@ then
 fi
 
 source /vagrant/python.sh
+source /vagrant/jdk.sh

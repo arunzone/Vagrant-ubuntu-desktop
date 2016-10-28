@@ -1,4 +1,3 @@
 #!/bin/bash
 
-# Add packages for nodejs
-sudo apt-get install --assume-yes python-software-properties
+sudo apt-get install --assume-yes python-software-properties git-core pcp
